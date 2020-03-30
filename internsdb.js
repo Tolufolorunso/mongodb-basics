@@ -6,4 +6,5 @@ const insertDocuments = (db, callback) => {
         console.log('interns collection created');
     })
 }
+
 module.exports = insertDocuments;
