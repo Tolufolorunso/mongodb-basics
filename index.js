@@ -11,8 +11,7 @@ const client = new MongoClient(url, { useUnifiedTopology: true });
 
 client.connect(function (err) {
     assert.equal(null, err)
-    // console.log('Database created by Tolufolorunso');
-    // console.log(insertD)
+    console.log('Database created by Tolufolorunso');
 
     const db = client.db(dbName)
     insertD(db, function() {
