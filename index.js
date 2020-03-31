@@ -4,7 +4,7 @@ const insertD = require('./internsdb')
 
 const url = 'mongodb://localhost:27017';
 
-const dbName = 'mydb';
+const dbName = 'tolufolorunso';
 
 const client = new MongoClient(url, { useUnifiedTopology: true });
 
