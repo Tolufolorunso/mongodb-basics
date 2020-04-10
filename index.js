@@ -21,18 +21,19 @@ client.connect(function (err) {
     insertD(db, 'myMovies', function (docs) {
         assert.equal(err, null);
         // console.log('Result of Insertion: ', docs);
-        // findInterns(db,'myMovies', function(doc) {
-        //     assert.equal(null, err);
-        //     console.log(doc);
-        updateMovie(db, 'myMovies', function (result, updatedValue) {
+        findInterns(db, 'myMovies', function (firstDocument, topRating, titleName) {
             assert.equal(null, err);
-            console.log('Updated Movie: ', result, updatedValue);
-            db.dropCollection('myMovies', err => {
-                // console.log('droped');
-                client.close();
-            });
-        })
-           
-        // });
+            console.log(firstDocument);
+            console.log(topRating);
+            console.log(titleName);
+            updateMovie(db, 'myMovies', function (result, updatedValue) {
+                assert.equal(null, err);
+                // console.log('Updated Movie: ', result, updatedValue);
+                db.dropCollection('myMovies', err => {
+                    // console.log('droped');
+                    client.close();
+                });
+            })
+        });
     });
 });
