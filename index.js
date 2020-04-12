@@ -10,30 +10,43 @@ const dbName = 'movies';
 
 const client = new MongoClient(url, { useUnifiedTopology: true });
 
-// const { findFirstDoc, findAll7StarMovies } = findInterns;
 
-
-client.connect(function (err) {
+client.connect(function (error) {
     const db = client.db(dbName);
-    const collection = db.collection('myMovies');
-    assert.equal(null, err)
+    // const collection = db.collection('myMovies');
+    assert.equal(null, error);
+
+    // db.dropCollection('myMovies', error => {
+    //     assert.equal(null, error);
+    //     client.close();
+    // });
 
     insertD(db, 'myMovies', function (docs) {
-        assert.equal(err, null);
+        assert.equal(null, error);
         // console.log('Result of Insertion: ', docs);
-        findInterns(db, 'myMovies', function (firstDocument, topRating, titleName) {
-            assert.equal(null, err);
-            console.log(firstDocument);
-            console.log(topRating);
-            console.log(titleName);
-            updateMovie(db, 'myMovies', function (result, updatedValue) {
-                assert.equal(null, err);
-                // console.log('Updated Movie: ', result, updatedValue);
-                db.dropCollection('myMovies', err => {
-                    // console.log('droped');
+        findInterns(db, 'myMovies', () => {
+            updateMovie(db, 'myMovies',  (result, updatedValue) => {
+                db.dropCollection('myMovies', error => {
+                    assert.equal(null, error);
                     client.close();
                 });
-            })
+            });
         });
     });
 });
+
+ // findInterns(db, 'myMovies', function () {
+        //     assert.equal(null, error);
+        //     // console.log(firstDocument);
+        //     // console.log(topRating);
+        //     console.log(titleName);
+        //     updateMovie(db, 'myMovies', function (result, updatedValue) {
+        //         assert.equal(null, error);
+        //         console.log('Updated Movie: ', result, updatedValue);
+        //         db.dropCollection('myMovies', error => {
+        //             assert.equal(null, error);
+        //             console.log('droped');
+        //             client.close();
+        //         });
+        //     });
+        // });

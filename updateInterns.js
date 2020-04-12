@@ -9,7 +9,8 @@ const updateMovie = (db, collection, cb) => {
     }
     coll.updateOne({ movie: 'The Banker' }, { $set: updatedValue }, null, (error, result) => {
         assert.equal(error, null);
-        cb(result.result, updatedValue)
+        // console.log('Updated Movie: ', result, updatedValue);
+        // cb(result.result, updatedValue)
     });
 };
 
